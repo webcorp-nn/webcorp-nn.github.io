@@ -49,7 +49,7 @@ gulp.task('styles', function () {
     return gulp.src('./dev/styles/main.scss')
         .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
         .pipe(postcss(processors))
-        .pipe(gulp.dest('./public/styles/'))
+        .pipe(gulp.dest('./assets/css/main.css'))
         .pipe(notify('компиляция scss ...'))
         .pipe(connect.reload());
 });
@@ -63,7 +63,7 @@ gulp.task('scripts', function () {
         .bundle()
         .pipe(source('app.js'))
         .pipe(jshint())
-        .pipe(gulp.dest('./public/js/'))
+        .pipe(gulp.dest('./assets/js/'))
         .pipe(notify('Скрипты ...'))
         .pipe(connect.reload())
 });
@@ -74,7 +74,7 @@ gulp.task('images', function () {
             progressive: true,
             use: [pngquant(), jpegtran()]
         }))
-        .pipe(gulp.dest('./public/images'))
+        .pipe(gulp.dest('./assets/images'))
 });
 
 gulp.task('default', ['connect', 'styles', 'scripts', 'jade'], function () {
